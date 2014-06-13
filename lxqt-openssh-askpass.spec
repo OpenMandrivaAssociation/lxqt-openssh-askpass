@@ -1,6 +1,6 @@
 Name: lxqt-openssh-askpass
 Version: 0.7.0
-Release: 1
+Release: 2
 Source0: http://lxqt.org/downloads/lxqt/%{version}/%{name}-%{version}.tar.xz
 Summary: OpenSSH askpass application for the LXQt desktop
 URL: http://lxqt.org/
