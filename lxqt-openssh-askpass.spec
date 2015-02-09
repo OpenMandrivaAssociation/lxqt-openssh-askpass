@@ -37,3 +37,4 @@ OpenSSH askpass application for the LXQt desktop
 
 %files
 %{_bindir}/*
+%{_datadir}/lxqt/translations/lxqt-openssh-askpass
