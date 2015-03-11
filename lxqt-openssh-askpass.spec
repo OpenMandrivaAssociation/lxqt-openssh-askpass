@@ -5,7 +5,7 @@ Version: 0.9.0
 Release: 0.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
-Release: 3
+Release: 4
 Source0: http://lxqt.org/downloads/lxqt/%{version}/%{name}-%{version}.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
@@ -15,10 +15,10 @@ Group: Graphical desktop/KDE
 Source1: lxqt-openssh-askpass.csh
 Source2: lxqt-openssh-askpass.sh
 BuildRequires: cmake
+BuildRequires: qmake5
 BuildRequires: cmake(lxqt)
-BuildRequires: qt5-devel
+BuildRequires: cmake(Qt5Widgets
 BuildRequires: cmake(Qt5LinguistTools)
-BuildRequires: cmake(Qt5X11Extras)
 Requires(post,postun): update-alternatives
 Provides: ssh-askpass
 
@@ -31,7 +31,7 @@ OpenSSH askpass application for the LXQt desktop
 %else
 %setup -q
 %endif
-%cmake -DUSE_QT5:BOOL=ON
+%cmake_qt5
 
 %build
 %make -C build
