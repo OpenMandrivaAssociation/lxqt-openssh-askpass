@@ -17,7 +17,7 @@ Source2: lxqt-openssh-askpass.sh
 BuildRequires: cmake
 BuildRequires: qmake5
 BuildRequires: cmake(lxqt)
-BuildRequires: cmake(Qt5Widgets
+BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5LinguistTools)
 Requires(post,postun): update-alternatives
 Provides: ssh-askpass
