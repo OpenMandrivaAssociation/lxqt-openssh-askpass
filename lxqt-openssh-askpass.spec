@@ -6,7 +6,7 @@ Release: 1.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
 Release: 1
-Source0: https://github.com/lxde/%{name}/archive/%{version}.tar.gz
+Source0: https://github.com/lxde/%{name}/archive/%{name}-%{version}.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
 URL: http://lxqt.org/
