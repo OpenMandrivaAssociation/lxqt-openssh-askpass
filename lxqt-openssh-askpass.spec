@@ -5,15 +5,13 @@ Version: 0.10.0
 Release: 1.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
-Release: 2
+Release: 3
 Source0: https://github.com/lxde/%{name}/archive/%{name}-%{version}.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
 URL: http://lxqt.org/
 License: GPL
 Group: Graphical desktop/KDE
-Source1: lxqt-openssh-askpass.csh
-Source2: lxqt-openssh-askpass.sh
 BuildRequires: cmake
 BuildRequires: qmake5
 BuildRequires: cmake(lxqt)
@@ -21,6 +19,7 @@ BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5LinguistTools)
 Requires(post,postun): update-alternatives
 Provides: ssh-askpass
+Requires(post):	openssh-askpass-common
 
 %description
 OpenSSH askpass application for the LXQt desktop
@@ -41,10 +40,6 @@ OpenSSH askpass application for the LXQt desktop
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 mkdir -p %{buildroot}%{_libdir}/ssh
 mv -f %{buildroot}%{_bindir}/lxqt-openssh-askpass %{buildroot}%{_libdir}/ssh/
-for i in %{SOURCE1} %{SOURCE2}; do
-	sed -e 's,/usr/libexec/openssh,%{_libdir}/ssh,g' $i >%{buildroot}%{_sysconfdir}/profile.d/$(basename $i)
-done
-chmod +x %{buildroot}%{_sysconfdir}/profile.d/*
 
 %find_lang %{name} --with-qt
 
@@ -58,5 +53,4 @@ update-alternatives --remove ssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 update-alternatives --remove bssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 
 %files -f %{name}.lang
-%config(noreplace) %{_sysconfdir}/profile.d/%{name}.*sh
 %{_libdir}/ssh/%{name}
