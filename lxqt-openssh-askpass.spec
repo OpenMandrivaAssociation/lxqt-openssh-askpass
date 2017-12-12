@@ -15,6 +15,7 @@ Group: Graphical desktop/KDE
 BuildRequires: cmake
 BuildRequires: qmake5
 BuildRequires: cmake(lxqt)
+BuildRequires: cmake(lxqt-build-tools)
 BuildRequires: cmake(Qt5Widgets)
 BuildRequires: cmake(Qt5LinguistTools)
 Requires(post,postun): update-alternatives
