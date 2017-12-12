@@ -14,6 +14,7 @@ License: GPL
 Group: Graphical desktop/KDE
 BuildRequires: cmake
 BuildRequires: qmake5
+BuildRequires: git-core
 BuildRequires: cmake(lxqt)
 BuildRequires: cmake(lxqt-build-tools)
 BuildRequires: cmake(Qt5Widgets)
