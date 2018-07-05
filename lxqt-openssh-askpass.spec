@@ -2,7 +2,7 @@
 Name: lxqt-openssh-askpass
 Version: 0.13.0
 %if %git
-Release: 1.%git.1
+Release: 0.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
 Release: 1
@@ -12,7 +12,7 @@ Summary: OpenSSH askpass application for the LXQt desktop
 URL: http://lxqt.org/
 License: GPL
 Group: Graphical desktop/KDE
-BuildRequires: cmake
+BuildRequires: cmake ninja
 BuildRequires: qmake5
 BuildRequires: git-core
 BuildRequires: cmake(lxqt)
@@ -32,18 +32,18 @@ OpenSSH askpass application for the LXQt desktop
 %else
 %setup -q
 %endif
-%cmake_qt5
+%cmake_qt5 \
+	-DPULL_TRANSLATIONS:BOOL=OFF \
+	-G Ninja
 
 %build
-%make -C build
+%ninja_build -C build
 
 %install
-%makeinstall_std -C build
+%ninja_install -C build
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 mkdir -p %{buildroot}%{_libdir}/ssh
 mv -f %{buildroot}%{_bindir}/lxqt-openssh-askpass %{buildroot}%{_libdir}/ssh/
-
-%find_lang %{name} --with-qt
 
 %post
 update-alternatives --install %{_libdir}/ssh/ssh-askpass ssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass 50
@@ -54,5 +54,5 @@ update-alternatives --install %{_bindir}/ssh-askpass bssh-askpass %{_libdir}/ssh
 update-alternatives --remove ssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 update-alternatives --remove bssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 
-%files -f %{name}.lang
+%files
 %{_libdir}/ssh/%{name}
