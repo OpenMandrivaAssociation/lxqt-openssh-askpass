@@ -1,12 +1,12 @@
 %define git 0
 Name: lxqt-openssh-askpass
-Version: 0.14.1
+Version: 0.15.0
 %if %git
-Release: 1.%git.1
+Release: 0.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
-Release: 2
-Source0: https://downloads.lxqt.org/downloads/%{name}/%{version}/%{name}-%{version}.tar.xz
+Release: 1
+Source0: https://github.com/lxqt/lxqt-openssh-askpass/releases/download/0.15.0/lxqt-openssh-askpass-0.15.0.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
 URL: http://lxqt.org/
@@ -28,11 +28,10 @@ OpenSSH askpass application for the LXQt desktop
 
 %prep
 %if %git
-%setup -qn %{name}-%{git}
+%autosetup -p1 -n %{name}-%{git}
 %else
-%setup -q
+%autosetup -p1
 %endif
-%autopatch -p1
 
 %cmake_qt5 \
 	-DPULL_TRANSLATIONS:BOOL=OFF \
@@ -60,3 +59,5 @@ update-alternatives --remove bssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 %files -f %{name}.lang
 %{_libdir}/ssh/%{name}
 %{_mandir}/man1/*.1*
+%lang(arn) %{_datadir}/lxqt/translations/lxqt-openssh-askpass/lxqt-openssh-askpass_arn.qm
+%lang(ast) %{_datadir}/lxqt/translations/lxqt-openssh-askpass/lxqt-openssh-askpass_ast.qm
