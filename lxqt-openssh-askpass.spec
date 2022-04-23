@@ -1,8 +1,8 @@
 #define git 0
 Name: lxqt-openssh-askpass
-Version: 1.0.0
+Version: 1.1.0
 %if 0%{?git:1}
-Release: 0.%git.1
+Release: 1.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
 Release: 1
@@ -59,5 +59,4 @@ update-alternatives --remove bssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass
 %files -f %{name}.lang
 %{_libdir}/ssh/%{name}
 %{_mandir}/man1/*.1*
-%lang(arn) %{_datadir}/lxqt/translations/lxqt-openssh-askpass/lxqt-openssh-askpass_arn.qm
-%lang(ast) %{_datadir}/lxqt/translations/lxqt-openssh-askpass/lxqt-openssh-askpass_ast.qm
+%dir %{_datadir}/lxqt/translations/lxqt-openssh-askpass
