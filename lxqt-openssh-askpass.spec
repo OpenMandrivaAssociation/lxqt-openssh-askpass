@@ -1,11 +1,11 @@
 #define git 0
 Name: lxqt-openssh-askpass
-Version: 1.2.0
+Version: 1.3.0
 %if 0%{?git:1}
 Release: 1.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
-Release: 4
+Release: 1
 Source0: https://github.com/lxqt/lxqt-openssh-askpass/releases/download/%{version}/lxqt-openssh-askpass-%{version}.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
