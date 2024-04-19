@@ -31,8 +31,7 @@ OpenSSH askpass application for the LXQt desktop
 %else
 %autosetup -p1
 %endif
-
-%cmake_qt5 \
+%cmake \
 	-DPULL_TRANSLATIONS:BOOL=OFF \
 	-G Ninja
 
