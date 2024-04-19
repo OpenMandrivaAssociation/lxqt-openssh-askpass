@@ -1,8 +1,8 @@
 #define git 0
 Name: lxqt-openssh-askpass
-Version: 1.4.0
+Version: 2.0.0
 %if 0%{?git:1}
-Release: 1.%git.1
+Release: 0.%git.1
 Source0: %{name}-%{git}.tar.xz
 %else
 Release: 1
@@ -13,12 +13,11 @@ URL: http://lxqt.org/
 License: GPL
 Group: Graphical desktop/KDE
 BuildRequires: cmake ninja
-BuildRequires: qmake5
 BuildRequires: git-core
 BuildRequires: cmake(lxqt)
-BuildRequires: cmake(lxqt-build-tools)
-BuildRequires: cmake(Qt5Widgets)
-BuildRequires: cmake(Qt5LinguistTools)
+BuildRequires: cmake(lxqt2-build-tools)
+BuildRequires: cmake(Qt6Widgets)
+BuildRequires: cmake(Qt6LinguistTools)
 Requires(post,postun): update-alternatives
 Provides: ssh-askpass
 Requires(post):	openssh-askpass-common
