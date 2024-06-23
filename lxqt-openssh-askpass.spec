@@ -1,6 +1,6 @@
 #define git 0
 Name: lxqt-openssh-askpass
-Version: 2.0.0
+Version: 2.0.1
 %if 0%{?git:1}
 Release: 0.%git.1
 Source0: %{name}-%{git}.tar.xz
