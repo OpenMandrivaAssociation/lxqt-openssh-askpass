@@ -35,7 +35,7 @@ OpenSSH askpass application for the LXQt desktop
 %cmake \
 	-DPULL_TRANSLATIONS:BOOL=OFF \
 	-G Ninja
-%ninja_build -C build
+%ninja_build
 
 %install
 %ninja_install -C build
