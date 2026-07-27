@@ -2,17 +2,18 @@
 Name: lxqt-openssh-askpass
 Version: 2.4.0
 %if 0%{?git:1}
-Release: 1.%git.1
+Release: 1.%git.2
 Source0: %{name}-%{git}.tar.xz
 %else
-Release: 1
+Release: 2
 Source0: https://github.com/lxqt/lxqt-openssh-askpass/releases/download/%{version}/lxqt-openssh-askpass-%{version}.tar.xz
 %endif
 Summary: OpenSSH askpass application for the LXQt desktop
 URL: https://lxqt.org/
 License: GPL
 Group: Graphical desktop/KDE
-BuildRequires: ninja
+BuildSystem: cmake
+BuildOption: -DPULL_TRANSLATIONS:BOOL=OFF
 BuildRequires: git-core
 BuildRequires: cmake(lxqt)
 BuildRequires: cmake(lxqt2-build-tools)
@@ -25,24 +26,10 @@ Requires(post):	openssh-askpass-common
 %description
 OpenSSH askpass application for the LXQt desktop
 
-%prep
-%if 0%{?git:1}
-%autosetup -p1 -n %{name}-%{git}
-%else
-%autosetup -p1
-%endif
-%build
-%cmake \
-	-DPULL_TRANSLATIONS:BOOL=OFF \
-	-G Ninja
-%ninja_build
-
-%install
-%ninja_install -C build
+%install -a
 mkdir -p %{buildroot}%{_sysconfdir}/profile.d/
 mkdir -p %{buildroot}%{_libdir}/ssh
 mv -f %{buildroot}%{_bindir}/lxqt-openssh-askpass %{buildroot}%{_libdir}/ssh/
-%find_lang %{name} --with-qt --all-name
 
 %post
 update-alternatives --install %{_libdir}/ssh/ssh-askpass ssh-askpass %{_libdir}/ssh/lxqt-openssh-askpass 50
