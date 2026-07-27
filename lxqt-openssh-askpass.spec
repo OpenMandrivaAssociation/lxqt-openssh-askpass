@@ -12,7 +12,7 @@ Summary: OpenSSH askpass application for the LXQt desktop
 URL: https://lxqt.org/
 License: GPL
 Group: Graphical desktop/KDE
-BuildRequires: cmake ninja
+BuildRequires: ninja
 BuildRequires: git-core
 BuildRequires: cmake(lxqt)
 BuildRequires: cmake(lxqt2-build-tools)
@@ -31,11 +31,10 @@ OpenSSH askpass application for the LXQt desktop
 %else
 %autosetup -p1
 %endif
+%build
 %cmake \
 	-DPULL_TRANSLATIONS:BOOL=OFF \
 	-G Ninja
-
-%build
 %ninja_build -C build
 
 %install
